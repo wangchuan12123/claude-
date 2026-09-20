@@ -1,0 +1,32 @@
+# 白名单式 git 同步：默认忽略 ~/.claude 下所有内容，只同步下方 un-ignore 的条目。
+/*
+
+# ---- 同步内容 ----
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/CLAUDE.md
+!/skills/
+!/hooks/
+!/rules/
+!/tools/
+!/agents/
+!/memory/
+
+# ---- 同步目录内仍需忽略的生成物 ----
+/skills/synced/
+**/node_modules/
+**/dist/
+**/build/
+**/__pycache__/
+**/*.pyc
+**/.git/
+**/.venv/
+**/venv/
+**/.DS_Store
+
+# ---- 明确不同步（含密钥 / 本机专属，已被上方 /* 覆盖，此处仅作说明） ----
+# settings.json       -> 含 ANTHROPIC_AUTH_TOKEN（API 密钥）
+# settings.local.json -> 本机权限 allow 列表
+# .mcp.json           -> 含 ARL_TOKEN（API 密钥）
+# projects/ sessions/ history.jsonl jobs/ cache/ telemetry/ plugins/ daemon* file-history/ ... -> 本机会话/缓存
